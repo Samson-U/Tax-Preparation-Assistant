@@ -1,6 +1,8 @@
 # Tax Preparation Assistant (Streamlit)
 
-A simple Python + Streamlit chatbox app for quick tax filing guidance. The UI is intentionally minimal: one chat history + one input.
+An Advanced AI-powered Tax Filing Chatbot that simplifies tax preparation using compressed tax codes and deduction guides.
+
+This chatbot interacts conversationally with users, understands financial inputs, applies tax rules, calculates tax liability, and provides personalized tax-saving suggestions.
 
 ## Requirements
 
