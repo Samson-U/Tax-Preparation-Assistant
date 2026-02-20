@@ -1,0 +1,11 @@
+[project]
+name = "tax-prep-assistant"
+version = "0.1.0"
+description = "Streamlit chat assistant for basic tax filing guidance"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+
+[tool.pyright]
+typeCheckingMode = "basic"

@@ -1,190 +1,61 @@
-Tax Preparation Assistant
-AI-Powered Tax Filing Chatbot
+# Tax Preparation Assistant (Streamlit)
 
-An advanced conversational chatbot designed to simplify tax preparation using compressed tax codes and structured deduction guides. The system interacts with users in natural language, extracts financial details, calculates tax liability, and provides intelligent tax-saving suggestions.
+A simple Python + Streamlit chatbox app for quick tax filing guidance. The UI is intentionally minimal: one chat history + one input.
 
+## Requirements
 
-Overview
+- Python 3.11+
+- Windows/macOS/Linux
 
-Tax filing can be complex due to multiple slabs, deductions, exemptions, and regulatory changes.
-The Tax Preparation Assistant reduces this complexity by providing:
+## Environment
 
-Conversational tax guidance
+Create a `.env` file (or copy from `.env.example`) and set:
 
-Automated deduction validation
+```env
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+OPENROUTER_MODEL=upstage/solar-pro-3:free
+SCALEDOWN_API_KEY=your_scaledown_api_key_here
+SCALEDOWN_API_URL=https://api.scaledown.ai/v1/compress
+```
 
-Slab-based tax calculation
+Notes:
 
-Personalized tax-saving recommendations
+- ScaleDown is optional. If `SCALEDOWN_API_KEY` is empty, compression is skipped.
+- Keep `.env` private. This repo ignores it via `.gitignore`.
 
-Clear explanation of results
+## Setup
 
-This project demonstrates the integration of AI, rule-based financial logic, and conversational interfaces.
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
 
+## Run
 
-Objectives
+```bash
+streamlit run app.py
+```
 
-Simplify tax calculation through conversational AI
+If the app can’t connect, verify your environment variables in `.env` and restart Streamlit.
 
-Improve calculation accuracy using structured tax rules
+## Structure
 
-Reduce confusion in applying deductions
+- UI: `src/tax_prep_assistant/ui/streamlit_app.py`
+- Chat logic: `src/tax_prep_assistant/chat/service.py`
+- API clients: `src/tax_prep_assistant/clients/`
+- Settings/env: `src/tax_prep_assistant/settings.py`
 
-Provide real-time optimization suggestions
+## Behavior
 
-Demonstrate AI application in financial technology
+- English only: enforced via the LLM system prompt.
+- Secrets: API keys are never printed in the UI.
 
+## Notes
 
-Key Features
-Conversational Interface
+- This project is a demo for learning and prototyping.
+- Guidance is simplified and not legal or tax advice.
 
-Users can describe their income and investments naturally:
+## Security
 
-“My income is 12 lakhs and I invested 1.5L in 80C and 20K in insurance.”
-
-The chatbot extracts relevant data and performs tax computation automatically.
-
-
-Compressed Tax Rule Engine
-
-Instead of large legal documents, the system uses:
-
-Pre-defined tax slabs
-
-Deduction caps
-
-Structured exemption logic
-
-Optimized rule mapping
-
-This ensures fast and efficient computation.
-
-
-Deduction Validation
-
-The assistant:
-
-Applies maximum limits (e.g., 80C, 80D)
-
-Prevents over-claiming
-
-Identifies unused deduction space
-
-Suggests additional eligible investments
-
-Tax Calculation Engine
-
-The system calculates:
-
-Total taxable income
-
-Slab-wise tax breakdown
-
-Final tax payable
-
-Optimization suggestions
-
-
-Intelligent Suggestions
-
-If eligible deductions are not fully utilized, the chatbot suggests legal tax-saving options.
-
-
-System Architecture
-User
-  ↓
-Chat Interface
-  ↓
-NLP Extraction Module
-  ↓
-Deduction Engine
-  ↓
-Tax Slab Engine
-  ↓
-Response Generator
-  ↓
-User Output
-Project Structure
-INTEL/
-│── .venv
-│── .env
-│── .env.example
-│── .gitignore
-│── app.py
-│── tax_engine.py
-│── chatbot_logic.py
-│── README.md
-│── requirements.txt
-File Description
-
-app.py → Main chatbot interface
-
-tax_engine.py → Tax slab & deduction processing logic
-
-chatbot_logic.py → Conversational flow and data extraction
-
-.env → Environment variables (API keys)
-
-requirements.txt → Project dependencies
-
-
-Technologies Used
-
-Python
-
-Streamlit (Chat UI)
-
-NLP-based extraction logic
-
-Rule-based financial computation
-
-Environment variable management
-
-
-Security & Privacy
-
-No financial data is permanently stored
-
-API keys secured using environment variables
-
-Designed for educational and demonstration purposes
-
-No integration with government tax systems
-
-
-Testing Strategy
-
-Multiple income bracket simulations
-
-Edge case testing (zero income, maximum deduction cases)
-
-Invalid input handling
-
-Over-investment validation
-
-
-Future Enhancements
-
-Support for multiple tax regimes
-
-Multi-country tax systems
-
-RAG integration with official tax documents
-
-Voice-based interaction
-
-Secure database for session tracking
-
-Automatic tax return form generation
-
-
-Use Cases
-
-Academic AI + Finance projects
-
-Demonstration of chatbot applications in fintech
-
-Educational tax assistance tool
-
-Prototype for financial advisory systems
-
+If you accidentally shared a key publicly, rotate/regenerate it with the provider and update `.env`.
